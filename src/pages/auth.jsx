@@ -21,6 +21,25 @@ const useStyle = makeStyles(theme => ({
 const Auth = props => {
     const classes = useStyle()
     const [value, setValue] = useState(0)
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
+    const updateUsername = event => {
+        setUsername(event.target.value)
+    }
+
+    const UpdatePassword = event => {
+        setPassword(event.target.value)
+    }
+
+    const login = () => {
+
+    }
+
+    const signup = () => {
+
+    }
+
     return <div>
         <Container>
             <Grid container spacing={2}>
@@ -40,7 +59,21 @@ const Auth = props => {
             </Grid>
 
             <center>
-                {(value === 0)? <Login /> : <Signup /> }
+                {(value === 0) ?
+                    <Login
+                        username={username}
+                        password={password}
+                        userHandle={updateUsername}
+                        passHandle={UpdatePassword}
+                        login={login}
+                    /> :
+                    <Signup
+                        username={username}
+                        password={password}
+                        userHandle={updateUsername}
+                        passHandle={UpdatePassword}
+                        signup={signup}
+                    />}
             </center>
 
         </Container>

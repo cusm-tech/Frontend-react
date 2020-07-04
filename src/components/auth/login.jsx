@@ -27,6 +27,8 @@ const Login = props => {
                         variant="outlined"
                         label="Username"
                         className={classes.fields}
+                        value={props.username}
+                        onChange={props.userHandle}
                     />
                 </Grid>
 
@@ -36,11 +38,15 @@ const Login = props => {
                         label="Password"
                         type="password"
                         className={classes.fields}
+                        value={props.password}
+                        onChange={props.passHandle}
                     />
                 </Grid>
 
                 <Grid item xs={12}>
-                    <Button >
+                    <Button
+                        onClick={props.login}
+                    >
                         Login
                         </Button>
                 </Grid>
