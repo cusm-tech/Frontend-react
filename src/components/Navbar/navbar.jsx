@@ -7,13 +7,14 @@ import {
     Toolbar,
     Typography,
     Slide,
-    useScrollTrigger
+    useScrollTrigger,
+    Button
 } from '@material-ui/core'
 
 const useStyle = makeStyles(theme => ({
     appbar: {
         // transition: '.22s',
-        color:'#000',
+        color: '#000',
         backgroundColor: '#fff',
         [theme.breakpoints.down('sm')]: {
             backgroundColor: '#fff'
@@ -46,15 +47,18 @@ const Navbar = props => {
     return (
         <div>
             <HideOnScroll {...props}>
-                <AppBar 
-                variant="elevation" 
-                position="sticky" 
-                className={classes.appbar}
-                elevation="0">
+                <AppBar
+                    variant="elevation"
+                    position="sticky"
+                    className={classes.appbar}
+                    elevation="0">
                     <Toolbar>
                         <Typography className={classes.title}>
                             CUSM
                     </Typography>
+                    <Button>
+                        Login
+                    </Button>
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>
