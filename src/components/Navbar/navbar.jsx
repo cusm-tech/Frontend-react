@@ -7,9 +7,10 @@ import {
     Toolbar,
     Typography,
     Slide,
-    useScrollTrigger,
-    Button
+    useScrollTrigger
 } from '@material-ui/core'
+
+import Auth from './auth.state'
 
 const useStyle = makeStyles(theme => ({
     appbar: {
@@ -56,9 +57,7 @@ const Navbar = props => {
                         <Typography className={classes.title}>
                             CUSM
                     </Typography>
-                        <Button>
-                            Login
-                    </Button>
+                        <Auth />
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>
