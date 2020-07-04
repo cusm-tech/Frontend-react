@@ -56,8 +56,8 @@ const Navbar = props => {
                         <Typography className={classes.title}>
                             CUSM
                     </Typography>
-                    <Button>
-                        Login
+                        <Button>
+                            Login
                     </Button>
                     </Toolbar>
                 </AppBar>
