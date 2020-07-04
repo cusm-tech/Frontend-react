@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Axios from 'axios'
 
 import {
     Container,
@@ -11,6 +12,12 @@ import {
 // importing custom components 
 import Login from '../components/auth/login'
 import Signup from '../components/auth/signup'
+
+import {
+    LOGIN_URL,
+    BASE_URL,
+    SIGNUP_URL
+} from '../constants/urls'
 
 const useStyle = makeStyles(theme => ({
     bottomBar: {
@@ -33,10 +40,34 @@ const Auth = props => {
     }
 
     const login = () => {
+        Axios({
+            method: 'POST',
+            url: LOGIN_URL,
+            data: {
+                username: username,
+                password: password
+            }
+        }).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
 
     }
 
     const signup = () => {
+        Axios({
+            method: 'POST',
+            url: SIGNUP_URL,
+            data: {
+                username: username,
+                password: password
+            }
+        }).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
 
     }
 
