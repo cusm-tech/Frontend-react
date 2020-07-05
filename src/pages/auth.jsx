@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import {
+    TOKEN,
+    USERNAME
+} from '../constants/localstorage'
 
 import {
     Container,
@@ -51,10 +55,12 @@ const Auth = props => {
             }
         }).then(res => {
             console.log(res)
-            alert(res.data.token)
+            localStorage.setItem(TOKEN, res.data.token)
+            localStorage.setItem(USERNAME, res.data.username)
             setLogin(true)
         }).catch(err => {
             console.log(err)
+            alert('something went worng try again')
         })
 
     }
@@ -69,9 +75,12 @@ const Auth = props => {
             }
         }).then(res => {
             console.log(res)
+            localStorage.setItem(TOKEN, res.data.token)
+            localStorage.setItem(USERNAME, res.data.username)
             setLogin(true)
         }).catch(err => {
             console.log(err)
+            alert('something went worng try again')
         })
 
     }
