@@ -75,8 +75,8 @@ const Auth = props => {
             }
         }).then(res => {
             console.log(res)
-            localStorage.setItem(`${TOKEN}`, res.data.token)
-            localStorage.setItem(`${USERNAME}`, res.data.username)
+            localStorage.setItem(TOKEN, res.data.token)
+            localStorage.setItem(USERNAME, res.data.username)
             setLogin(true)
         }).catch(err => {
             console.log(err)
