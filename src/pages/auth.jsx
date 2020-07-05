@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 import {
     Container,
@@ -30,6 +31,7 @@ const Auth = props => {
     const [value, setValue] = useState(0)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [isLogin, setLogin] = useState(false)
 
     const updateUsername = event => {
         setUsername(event.target.value)
@@ -49,6 +51,8 @@ const Auth = props => {
             }
         }).then(res => {
             console.log(res)
+            alert(res.data.token)
+            setLogin(true)
         }).catch(err => {
             console.log(err)
         })
@@ -65,10 +69,18 @@ const Auth = props => {
             }
         }).then(res => {
             console.log(res)
+            setLogin(true)
         }).catch(err => {
             console.log(err)
         })
 
+    }
+
+    if (isLogin) {
+        return <Redirect
+            path="/"
+
+        />
     }
 
     return <div>
