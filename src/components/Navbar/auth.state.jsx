@@ -2,7 +2,13 @@ import React from 'react'
 import {useHistory} from 'react-router-dom'
 
 import {
-    Button
+    TOKEN,
+    USERNAME
+} from '../../constants/localstorage'
+
+import {
+    Button,
+    Typography
 } from '@material-ui/core'
 
 const Auth = props => {
@@ -13,9 +19,11 @@ const Auth = props => {
 
     return (
         <div>
-            <Button onClick={() => {route('/auth')}}>
+            {(localStorage.getItem(TOKEN))? <Typography>
+                {localStorage.getItem(USERNAME)}
+            </Typography>: <Button onClick={() => {route('/auth')}}>
                 Login
-            </Button>
+            </Button>}
         </div>
     )
 }
