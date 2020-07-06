@@ -1,10 +1,6 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
-
-import {
-    TOKEN,
-    USERNAME
-} from '../../constants/localstorage'
+import {connect} from 'react-redux'
 
 import {
     Button,
@@ -19,8 +15,9 @@ const Auth = props => {
 
     return (
         <div>
-            {(localStorage.getItem(TOKEN))? <Typography>
-                {localStorage.getItem(USERNAME)}
+            {(props.token)? <Typography>
+                {/* {localStorage.getItem(USERNAME)} */}
+                {props.username}
             </Typography>: <Button onClick={() => {route('/auth')}}>
                 Login
             </Button>}
@@ -28,4 +25,11 @@ const Auth = props => {
     )
 }
 
-export default Auth
+const mapStateToProps = state => {
+    return {
+        username: state.user.username,
+        token: state.user.token
+    }
+}
+
+export default connect(mapStateToProps)(Auth)

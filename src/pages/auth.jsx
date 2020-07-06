@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 import {
     TOKEN,
     USERNAME
 } from '../constants/localstorage'
+
+import {
+    signin
+} from '../redux/actions/users'
 
 import {
     Container,
@@ -57,6 +62,7 @@ const Auth = props => {
             console.log(res)
             localStorage.setItem(TOKEN, res.data.token)
             localStorage.setItem(USERNAME, res.data.username)
+            props.signIn(res.data.username, res.data.token)
             setLogin(true)
         }).catch(err => {
             console.log(err)
@@ -77,6 +83,7 @@ const Auth = props => {
             console.log(res)
             localStorage.setItem(TOKEN, res.data.token)
             localStorage.setItem(USERNAME, res.data.username)
+            props.signIn(res.data.username, res.data.token)
             setLogin(true)
         }).catch(err => {
             console.log(err)
@@ -132,4 +139,10 @@ const Auth = props => {
     </div>
 }
 
-export default Auth
+const mapDispatchToProps = dispatch => {
+    return {
+        signIn: (username, token) => dispatch(signin(username, token))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Auth)
