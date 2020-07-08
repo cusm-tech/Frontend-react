@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import {
+    useHistory
+} from 'react-router-dom'
 
 import {
     AppBar,
@@ -7,7 +10,8 @@ import {
     Toolbar,
     Typography,
     Slide,
-    useScrollTrigger
+    useScrollTrigger,
+    Button
 } from '@material-ui/core'
 
 import Auth from './auth.state'
@@ -45,6 +49,12 @@ HideOnScroll.propTypes = {
 const Navbar = props => {
     const classes = useStyle()
 
+    const history = useHistory()
+
+    const route = path => {
+        history.push(path)
+    }
+
     return (
         <div>
             <HideOnScroll {...props}>
@@ -56,8 +66,16 @@ const Navbar = props => {
                     <Toolbar>
                         <Typography className={classes.title}>
                             CUSM
-                    </Typography>
+                        </Typography>
+
+                        <Button
+                        onClick={() => {route('/notes')}}
+                        >
+                            Notes
+                        </Button>
+
                         <Auth />
+
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>

@@ -17,7 +17,9 @@ const Auth = props => {
         <div>
             {(props.token)? <Typography>
                 {/* {localStorage.getItem(USERNAME)} */}
+                <Button>
                 {props.username}
+                </Button>
             </Typography>: <Button onClick={() => {route('/auth')}}>
                 Login
             </Button>}
