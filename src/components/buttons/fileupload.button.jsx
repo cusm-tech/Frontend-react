@@ -27,7 +27,10 @@ const FileUploadButton = props => {
     return (
         <div className={classes.root}>
             <Tooltip title="Upload Files">
-                <Fab color="primary">
+                <Fab 
+                color="primary"
+                onClick={props.handle}
+                >
                     <Add fontSize="22" />
                 </Fab>
 
