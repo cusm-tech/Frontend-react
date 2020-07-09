@@ -19,7 +19,7 @@ const getAllFolder = data => {
 
 
 // async actions 
-const getAllFolderAsync = () => {
+export const getAllFolderAsync = () => {
     return dispatch => {
         Axios({
             method: 'GET',

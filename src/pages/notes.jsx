@@ -1,5 +1,10 @@
 import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { connect } from 'react-redux'
+
+import {
+    getAllFolderAsync
+} from '../redux/actions/file'
 
 import {
     makeStyles,
@@ -71,4 +76,20 @@ const Notes = props => {
     )
 }
 
-export default Notes
+const mapStateToProps = state => {
+    return {
+        files: state.file.files,
+        level: state.file.currentLevel,
+        root: state.file.currentRoot
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetAllFiles: () => { dispatch(getAllFolderAsync()) }
+    }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notes)
