@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { connect } from 'react-redux'
 
@@ -27,6 +27,10 @@ const useStyle = makeStyles(theme => ({
 
 const Notes = props => {
     const classes = useStyle()
+
+    useEffect(() => {
+        props.fetAllFiles()
+    },[])
 
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files

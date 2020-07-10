@@ -31,7 +31,7 @@ const FileUploadButton = props => {
                 color="primary"
                 onClick={props.handle}
                 >
-                    <Add fontSize="22" />
+                    <Add fontSize="large" />
                 </Fab>
 
             </Tooltip>
