@@ -16,6 +16,7 @@ import {
 
 // custom components 
 import UploadButton from '../components/buttons/fileupload.button'
+import Fs from '../components/holders/fs'
 
 const useStyle = makeStyles(theme => ({
     dialog: {
@@ -73,6 +74,8 @@ const Notes = props => {
             </Dialog>
 
             <h1>Notes Page</h1>
+            
+            {props.files.map(el => <Fs type={el.type} name={el.name} />)}
 
             <UploadButton handle={openDialog} />
 
