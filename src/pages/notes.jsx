@@ -11,7 +11,8 @@ import {
     Dialog,
     DialogTitle,
     DialogContent,
-    Box
+    Box,
+    Grid
 } from '@material-ui/core'
 
 // custom components 
@@ -31,7 +32,7 @@ const Notes = props => {
 
     useEffect(() => {
         props.fetAllFiles()
-    },[])
+    }, [])
 
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
@@ -73,9 +74,18 @@ const Notes = props => {
 
             </Dialog>
 
-            <h1>Notes Page</h1>
-            
-            {props.files.map(el => <Fs type={el.type} name={el.name} />)}
+            <Grid container spacing={2}>
+
+                {props.files.map(el => <Fs
+                    type={el.type}
+                    name={el.name}
+                    currLevel={props.currLevel}
+                    level={el.level}
+                />)}
+
+            </Grid>
+
+
 
             <UploadButton handle={openDialog} />
 
@@ -86,7 +96,7 @@ const Notes = props => {
 const mapStateToProps = state => {
     return {
         files: state.file.files,
-        level: state.file.currentLevel,
+        currLevel: state.file.currentLevel,
         root: state.file.currentRoot
     }
 }
