@@ -1,5 +1,6 @@
 import {
-    GET_ALL_FILES
+    GET_ALL_FILES,
+    CHANGE_DIR
 } from '../../constants/action.type'
 
 const initialState = {
@@ -15,7 +16,12 @@ export default (state = initialState, action) => {
                 ...state,
                 files: action.payload
             }
-
+        case CHANGE_DIR:
+            return {
+                ...state,
+                CurrentRoot: action.payload.root,
+                currentLevel: action.payload.level
+            }
         default:
             return state
     }

@@ -76,12 +76,20 @@ const Notes = props => {
 
             <Grid container spacing={2}>
 
-                {props.files.map(el => <Fs
-                    type={el.type}
-                    name={el.name}
-                    currLevel={props.currLevel}
-                    level={el.level}
-                />)}
+                {props.files.map(el => {
+                    if (el.level !== props.currLevel){
+                        return <></>
+                    }
+
+                    return (
+                        <Fs
+                            type={el.type}
+                            name={el.name}
+                            currLevel={props.currLevel}
+                            level={el.level}
+                        />
+                    )
+                })}
 
             </Grid>
 

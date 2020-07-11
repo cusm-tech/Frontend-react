@@ -1,5 +1,6 @@
 import {
-    GET_ALL_FILES
+    GET_ALL_FILES,
+    CHANGE_DIR
 } from '../../constants/action.type'
 
 import {
@@ -14,6 +15,13 @@ const getAllFolder = data => {
     return {
         type: GET_ALL_FILES,
         payload: data
+    }
+}
+
+export const changeDir = (level, root) => {
+    return {
+        type: CHANGE_DIR,
+        payload: { level, root }
     }
 }
 
