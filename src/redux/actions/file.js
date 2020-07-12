@@ -1,6 +1,7 @@
 import {
     GET_ALL_FILES,
-    CHANGE_DIR
+    CHANGE_DIR,
+    CREATE_FOLDER
 } from '../../constants/action.type'
 
 import {
@@ -14,6 +15,13 @@ import Axios from 'axios'
 const getAllFolder = data => {
     return {
         type: GET_ALL_FILES,
+        payload: data
+    }
+}
+
+const createFolder = data => {
+    return {
+        type: CREATE_FOLDER,
         payload: data
     }
 }
@@ -34,6 +42,22 @@ export const getAllFolderAsync = () => {
             url: FILES_URL
         }).then(res => {
             dispatch(getAllFolder(res.data))
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+}
+
+const createFolderAsync = (level, root, name) => {
+    return dispatch => {
+        Axios({
+            method: 'POST',
+            url: FOLDER_URL + `?level=${level}&root=${root}`,
+            data: {
+                name: name
+            }
+        }).then(res => {
+            dispatch(getAllFolderAsync())
         }).catch(err => {
             console.log(err)
         })
