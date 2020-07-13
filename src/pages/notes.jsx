@@ -93,13 +93,13 @@ const Notes = props => {
             </Dialog>
 
             <Dialog
-            open={folderDialog}
-            onClose={() => {
-                setFolderDialog(!folderDialog)
-            }}
+                open={folderDialog}
+                onClose={() => {
+                    setFolderDialog(!folderDialog)
+                }}
             >
                 <DialogContent>
-                    <TextField variant="outlined" label="folder name"/>
+                    <TextField variant="outlined" label="folder name" />
                 </DialogContent>
 
                 <DialogActions>
@@ -131,9 +131,9 @@ const Notes = props => {
 
             {((add) ? <div>
                 <UploadFile handle={openDialog} />
-                <FolderCreate handle={toggleFolderDialog}/>
+                <FolderCreate handle={toggleFolderDialog} />
             </div> : null)}
-            <UploadButton handle={addToggle}/>
+            <UploadButton handle={addToggle} />
 
         </div>
     )
