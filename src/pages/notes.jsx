@@ -17,6 +17,8 @@ import {
 
 // custom components 
 import UploadButton from '../components/buttons/fileupload.button'
+import FolderCreate from '../components/buttons/create.folder'
+import UploadFile from '../components/buttons/upload.file'
 import Fs from '../components/holders/fs'
 
 const useStyle = makeStyles(theme => ({
@@ -50,6 +52,12 @@ const Notes = props => {
         setDialog(true)
     }
 
+    const [add, setAdd] = useState(false)
+
+    const addToggle = () => {
+        setAdd(!add)
+    }
+
 
     return (
         <div>
@@ -77,7 +85,7 @@ const Notes = props => {
             <Grid container spacing={2}>
 
                 {props.files.map(el => {
-                    if (el.level !== props.currLevel){
+                    if (el.level !== props.currLevel) {
                         return <></>
                     }
 
@@ -94,8 +102,11 @@ const Notes = props => {
             </Grid>
 
 
-
-            <UploadButton handle={openDialog} />
+            {((add) ? <div>
+                <UploadFile handle={openDialog} />
+                <FolderCreate />
+            </div> : null)}
+            <UploadButton handle={addToggle}/>
 
         </div>
     )
