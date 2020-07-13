@@ -27,6 +27,7 @@ const FileUpload = props => {
 
     return (
         <div className={classes.root}>
+            <Tooltip title="Upload File">
             <Fab 
             size="small" 
             color="primary"
@@ -34,6 +35,7 @@ const FileUpload = props => {
             >
                 <FileCopy />
             </Fab>
+            </Tooltip>
 
         </div>
     )
