@@ -48,7 +48,7 @@ export const getAllFolderAsync = () => {
     }
 }
 
-const createFolderAsync = (level, root, name) => {
+export const createFolderAsync = (level, root, name) => {
     return dispatch => {
         Axios({
             method: 'POST',

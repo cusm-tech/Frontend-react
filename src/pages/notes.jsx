@@ -3,7 +3,9 @@ import { useDropzone } from 'react-dropzone'
 import { connect } from 'react-redux'
 
 import {
-    getAllFolderAsync
+    getAllFolderAsync,
+    changeDir,
+    createFolderAsync
 } from '../redux/actions/file'
 
 import {
@@ -68,6 +70,21 @@ const Notes = props => {
         setFolderDialog(true)
     }
 
+    const [folderName, setFolderName] = useState('')
+
+    const folderNameHandler = e => {
+        setFolderName(e.target.value)
+    }
+
+    const createFolder = () => {
+        if (folderName.trim == ''){
+            return
+        }
+
+        props.createFolder(props.currLevel, props.level, folderName)
+        setFolderDialog(false)
+    }
+
 
     return (
         <div>
@@ -99,11 +116,17 @@ const Notes = props => {
                 }}
             >
                 <DialogContent>
-                    <TextField variant="outlined" label="folder name" />
+                    <TextField 
+                    variant="outlined" 
+                    label="folder name" 
+                    onClick={folderNameHandler}
+                    />
                 </DialogContent>
 
                 <DialogActions>
-                    <Button>
+                    <Button 
+                    onClick={createFolder}
+                    >
                         Create
                     </Button>
                 </DialogActions>
@@ -149,7 +172,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetAllFiles: () => { dispatch(getAllFolderAsync()) }
+        fetAllFiles: () => { dispatch(getAllFolderAsync()) },
+        createFolder: (level, root, name) => {dispatch(createFolderAsync(level,root, name))}
     }
 }
 
