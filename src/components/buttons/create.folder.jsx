@@ -28,7 +28,11 @@ const CreateFolder = props => {
     return (
         <div className={classes.root}>
             <Tooltip title="create Folder">
-            <Fab size="small" color="secondary">
+            <Fab 
+            size="small" 
+            color="secondary"
+            onClick={props.handle}
+            >
                 <Folder />
             </Fab>
             </Tooltip>

@@ -12,7 +12,11 @@ import {
     DialogTitle,
     DialogContent,
     Box,
-    Grid
+    Grid,
+    Typography,
+    TextField,
+    DialogActions,
+    Button
 } from '@material-ui/core'
 
 // custom components 
@@ -58,6 +62,12 @@ const Notes = props => {
         setAdd(!add)
     }
 
+    const [folderDialog, setFolderDialog] = useState(false)
+
+    const toggleFolderDialog = () => {
+        setFolderDialog(true)
+    }
+
 
     return (
         <div>
@@ -82,6 +92,23 @@ const Notes = props => {
 
             </Dialog>
 
+            <Dialog
+            open={folderDialog}
+            onClose={() => {
+                setFolderDialog(!folderDialog)
+            }}
+            >
+                <DialogContent>
+                    <TextField variant="outlined" label="folder name"/>
+                </DialogContent>
+
+                <DialogActions>
+                    <Button>
+                        Create
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
             <Grid container spacing={2}>
 
                 {props.files.map(el => {
@@ -104,7 +131,7 @@ const Notes = props => {
 
             {((add) ? <div>
                 <UploadFile handle={openDialog} />
-                <FolderCreate />
+                <FolderCreate handle={toggleFolderDialog}/>
             </div> : null)}
             <UploadButton handle={addToggle}/>
 
