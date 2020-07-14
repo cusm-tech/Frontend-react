@@ -80,7 +80,6 @@ const Notes = props => {
         if (folderName.trim == ''){
             return
         }
-
         props.createFolder(props.currLevel, props.level, folderName)
         setFolderDialog(false)
     }
@@ -119,7 +118,7 @@ const Notes = props => {
                     <TextField 
                     variant="outlined" 
                     label="folder name" 
-                    onClick={folderNameHandler}
+                    onChange={folderNameHandler}
                     />
                 </DialogContent>
 
