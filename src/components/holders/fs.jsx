@@ -36,7 +36,7 @@ const Fs = props => {
                         <img 
                         src={(props.type === 'FOLDER') ? folder : pdf} 
                         alt="" 
-                        width="150px" 
+                        width="120px" 
                         onDoubleClick={() => {props.changeDir(props.level, props.id)}}
                         />
                     </Grid>
