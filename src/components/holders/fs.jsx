@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { changeDir } from '../../redux/actions/file'
 
 // importing images 
 import folder from '../../assets/fs/folder.svg'
@@ -30,13 +32,18 @@ const Fs = props => {
             <Grid container>
                 <Card className={classes.root} elevation="0">
 
-                    <Grid item xs={12}>
-                        <img src={(props.type === 'FOLDER')?folder: pdf} alt="" width="150px" />
+                    <Grid item xs={12} >
+                        <img 
+                        src={(props.type === 'FOLDER') ? folder : pdf} 
+                        alt="" 
+                        width="150px" 
+                        onDoubleClick={() => {props.changeDir(props.level, props.id)}}
+                        />
                     </Grid>
                     <Grid item xs={12}>
                         <Typography align="center">
                             {props.name}
-                    </Typography>
+                        </Typography>
                     </Grid>
 
                 </Card>
@@ -46,5 +53,17 @@ const Fs = props => {
     )
 }
 
+const mapStateToProps = state => {
+    return {
+        level: state.file.currentLevel,
+        root: state.file.currentRoot
+    }
+}
 
-export default Fs
+const mapDispatchToProps = dispatch => {
+    return {
+        changeDir: (level, root) => { dispatch(changeDir(level + 1 , root)) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Fs)

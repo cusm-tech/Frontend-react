@@ -144,6 +144,7 @@ const Notes = props => {
                             name={el.name}
                             currLevel={props.currLevel}
                             level={el.level}
+                            id={el._id}
                         />
                     )
                 })}
