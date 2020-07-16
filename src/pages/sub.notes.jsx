@@ -11,8 +11,6 @@ const SubNotes = props => {
     },[])
     return (
         <div>
-            
-
         </div>
     )
 }
