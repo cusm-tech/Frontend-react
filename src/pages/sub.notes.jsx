@@ -83,7 +83,7 @@ const SubNotes = props => {
         if (folderName.trim == '') {
             return
         }
-        props.createFolder(props.currLevel, props.level, folderName)
+        props.createFolder(level, root, folderName)
         setFolderDialog(false)
     }
 
