@@ -44,7 +44,10 @@ const Notes = props => {
 
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
-        console.log(acceptedFiles)
+        console.log(acceptedFiles[0])
+        const data = new FormData()
+        data.append('doc', acceptedFiles[0])
+        
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 

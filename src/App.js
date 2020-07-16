@@ -12,6 +12,7 @@ import Navbar from './components/Navbar/navbar'
 import Index from './pages/index'
 import Auth from './pages/auth'
 import Notes from './pages/notes'
+import SubNotes from './pages/sub.notes'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/" component={Index} />
           <Route exact path="/auth" component={Auth} />
           <Route exact path="/notes" component={Notes} /> 
+          <Route path="/notes/:level/:root" component={SubNotes} />
         </Switch>
 
       </Router>
