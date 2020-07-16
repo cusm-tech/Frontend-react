@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getAFolder } from '../redux/actions/file'
+import {
+    getAFolder,
+    changeDir,
+    createFolderAsync
+} from '../redux/actions/file'
 import { useDropzone } from 'react-dropzone'
 
 import UploadButton from '../components/buttons/fileupload.button'
@@ -146,7 +150,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToprops = dispatch => {
     return {
-        fetchFiles: (level, root) => { dispatch(getAFolder(level, root)) }
+        fetchFiles: (level, root) => { dispatch(getAFolder(level, root)) },
+        createFolder: (level, root, name) => { dispatch(createFolderAsync(level, root, name)) }
     }
 }
 
