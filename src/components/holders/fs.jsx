@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { changeDir } from '../../redux/actions/file'
+import {useHistory} from 'react-router-dom'
 
 // importing images 
 import folder from '../../assets/fs/folder.svg'
@@ -26,6 +27,11 @@ const useStyle = makeStyles(theme => ({
 const Fs = props => {
 
     const classes = useStyle()
+    const history = useHistory()
+
+    const openFolder = (level, root) => {
+        history.push(`/notes/${level}/${root}`)
+    }
 
     return (
         <div>
@@ -37,7 +43,7 @@ const Fs = props => {
                         src={(props.type === 'FOLDER') ? folder : pdf} 
                         alt="" 
                         width="120px" 
-                        onDoubleClick={() => {props.changeDir(props.level, props.id)}}
+                        onDoubleClick={() => {openFolder(props.level + 1 , props.id)}}
                         />
                     </Grid>
                     <Grid item xs={12}>
