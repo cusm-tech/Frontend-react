@@ -77,3 +77,20 @@ export const getAFolder = (level, root) => {
         })
     }
 }
+
+export const uploadFile = (file, level, root, name) => {
+    return dispath => {
+        let data = new FormData()
+        data.append('doc', file)
+        data.append('name', name)
+        Axios({
+            method: 'POST',
+            url: FILE_URL + `?level=${level}&root=${root}`,
+            data: data
+        }).then(
+            dispath(getAllFolderAsync())
+        ).catch(err => {
+            console.log(err)
+        })
+    }
+}
