@@ -58,6 +58,7 @@ export const createFolderAsync = (level, root, name) => {
                 name: name
             }
         }).then(res => {
+            console.log(res.data)
             dispatch(getAllFolderAsync())
         }).catch(err => {
             console.log(err)
