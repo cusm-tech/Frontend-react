@@ -43,7 +43,7 @@ const Fs = props => {
                         src={(props.type === 'FOLDER') ? folder : pdf} 
                         alt="" 
                         width="120px" 
-                        onDoubleClick={() => {openFolder(props.level + 1 , props.id)}}
+                        onDoubleClick={() => {openFolder(parseInt(props.level) + 1, props.id)}}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -61,8 +61,7 @@ const Fs = props => {
 
 const mapStateToProps = state => {
     return {
-        level: state.file.currentLevel,
-        root: state.file.currentRoot
+        
     }
 }
 

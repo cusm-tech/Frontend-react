@@ -137,6 +137,9 @@ const Notes = props => {
             <Grid container spacing={2}>
 
                 {props.files.map(el => {
+                    if(el.level !== 0 ){
+                        return <></>
+                    }
                     return (
                         <Fs
                             type={el.type}
@@ -163,7 +166,7 @@ const Notes = props => {
 
 const mapStateToProps = state => {
     return {
-        files: state.file.displayFiles,
+        files: state.file.files,
         currLevel: state.file.currentLevel,
         root: state.file.currentRoot
     }

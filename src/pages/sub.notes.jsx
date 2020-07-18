@@ -40,7 +40,7 @@ const SubNotes = props => {
 
     useEffect(() => {
         props.fetchFiles(level, root)
-    }, [])
+    })
 
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
@@ -132,6 +132,22 @@ const SubNotes = props => {
                     </Button>
                 </DialogActions>
             </Dialog>
+
+            <Grid container spacing={2}>
+                {props.files.map(el => {
+                    if(el.level !== level)
+                    return (
+                        <Fs
+                            type={el.type}
+                            name={el.name}
+                            currLevel={props.currLevel}
+                            level={el.level}
+                            id={el._id}
+                        />
+                    )
+                })}
+            </Grid>
+
 
             {((add) ? <div>
                 <UploadFile handle={openDialog} />

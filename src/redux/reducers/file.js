@@ -9,7 +9,6 @@ const initialState = {
     files: [],
     currentLevel: 0,
     currentRoot: '',
-    displayFiles: []
 }
 
 export default (state = initialState, action) => {
@@ -18,14 +17,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 files:  action.payload,
-                displayFiles: _.filter(action.payload, (o) => o.level === state.currentLevel)
             }
         case CHANGE_DIR:
             return {
                 ...state,
                 CurrentRoot: action.payload.root,
                 currentLevel: action.payload.level,
-                displayFiles: _.filter(state.files, (o) => o.level === state.currentLevel)
             }
         default:
             return state
