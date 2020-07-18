@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import {
     getAFolder,
     changeDir,
-    createFolderAsync
+    createFolderAsync,
+    uploadFile
 } from '../redux/actions/file'
 import { useDropzone } from 'react-dropzone'
 
@@ -45,8 +46,7 @@ const SubNotes = props => {
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
         console.log(acceptedFiles[0])
-        const data = new FormData()
-        data.append('doc', acceptedFiles[0])
+        props.uploadFile(acceptedFiles[0], level, root, 'name')
 
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
@@ -167,7 +167,8 @@ const mapStateToProps = state => {
 const mapDispatchToprops = dispatch => {
     return {
         fetchFiles: (level, root) => { dispatch(getAFolder(level, root)) },
-        createFolder: (level, root, name) => { dispatch(createFolderAsync(level, root, name)) }
+        createFolder: (level, root, name) => { dispatch(createFolderAsync(level, root, name)) },
+        uploadFile: (file, level, root, name) => {dispatch(uploadFile(file, level, root, file))}
     }
 }
 
