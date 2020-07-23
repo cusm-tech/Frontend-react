@@ -4,6 +4,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
+import {connect} from 'react-redux'
 
 // importing components
 import Navbar from './components/Navbar/navbar'
@@ -14,9 +15,29 @@ import Auth from './pages/auth'
 import Notes from './pages/notes'
 import SubNotes from './pages/sub.notes'
 
-function App() {
+import {
+  Backdrop,
+  makeStyles,
+  CircularProgress
+} from '@material-ui/core'
+
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
+
+function App(props) {
+  const classes = useStyles()
   return (
     <div>
+      <Backdrop 
+      className={classes.backdrop} 
+      open={props.isLoading}
+      >
+        <CircularProgress color="inherit"/>
+      </Backdrop>
       <Router>
         <Navbar />
 
@@ -33,4 +54,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isLoading: state.ui.isLoading
+  }
+}
+
+export default connect(mapStateToProps)(App);
