@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { changeDir } from '../../redux/actions/file'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 // importing images 
 import folder from '../../assets/fs/folder.svg'
@@ -39,11 +39,11 @@ const Fs = props => {
                 <Card className={classes.root} elevation="0">
 
                     <Grid item xs={12} >
-                        <img 
-                        src={(props.type === 'FOLDER') ? folder : pdf} 
-                        alt="" 
-                        width="120px" 
-                        onDoubleClick={() => {openFolder(parseInt(props.level) + 1, props.id)}}
+                        <img
+                            src={(props.type === 'FOLDER') ? folder : pdf}
+                            alt=""
+                            width="120px"
+                            onDoubleClick={(props.type == 'FOLDER') ? () => { openFolder(parseInt(props.level) + 1, props.id) } : null}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -61,13 +61,13 @@ const Fs = props => {
 
 const mapStateToProps = state => {
     return {
-        
+
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        changeDir: (level, root) => { dispatch(changeDir(level + 1 , root)) }
+        changeDir: (level, root) => { dispatch(changeDir(level + 1, root)) }
     }
 }
 
