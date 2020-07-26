@@ -26,6 +26,7 @@ import UploadButton from '../components/buttons/fileupload.button'
 import FolderCreate from '../components/buttons/create.folder'
 import UploadFile from '../components/buttons/upload.file'
 import Fs from '../components/holders/fs'
+import LeftPannel from '../components/holders/left.pannel'
 
 const useStyle = makeStyles(theme => ({
     dialog: {
@@ -47,7 +48,7 @@ const Notes = props => {
         console.log(acceptedFiles[0])
         const data = new FormData()
         data.append('doc', acceptedFiles[0])
-        
+
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
@@ -80,7 +81,7 @@ const Notes = props => {
     }
 
     const createFolder = () => {
-        if (folderName.trim == ''){
+        if (folderName.trim == '') {
             return
         }
         props.createFolder(props.currLevel, props.level, folderName)
@@ -118,16 +119,16 @@ const Notes = props => {
                 }}
             >
                 <DialogContent>
-                    <TextField 
-                    variant="outlined" 
-                    label="folder name" 
-                    onChange={folderNameHandler}
+                    <TextField
+                        variant="outlined"
+                        label="folder name"
+                        onChange={folderNameHandler}
                     />
                 </DialogContent>
 
                 <DialogActions>
-                    <Button 
-                    onClick={createFolder}
+                    <Button
+                        onClick={createFolder}
                     >
                         Create
                     </Button>
@@ -135,21 +136,34 @@ const Notes = props => {
             </Dialog>
 
             <Grid container spacing={2}>
+                <Grid item sm={2}>
+                    <LeftPannel />
+                </Grid>
 
-                {props.files.map(el => {
-                    if(el.level !== 0 ){
-                        return <></>
-                    }
-                    return (
-                        <Fs
-                            type={el.type}
-                            name={el.name}
-                            currLevel={props.currLevel}
-                            level={el.level}
-                            id={el._id}
-                        />
-                    )
-                })}
+                <Grid item>
+
+                    <Grid container spacing={2}>
+
+                        {props.files.map(el => {
+                            if (el.level !== 0) {
+                                return <></>
+                            }
+                            return (
+                                <Fs
+                                    type={el.type}
+                                    name={el.name}
+                                    currLevel={props.currLevel}
+                                    level={el.level}
+                                    id={el._id}
+                                />
+                            )
+                        })}
+
+                    </Grid>
+
+
+
+                </Grid>
 
             </Grid>
 
@@ -175,7 +189,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetAllFiles: () => { dispatch(getAllFolderAsync()) },
-        createFolder: (level, root, name) => {dispatch(createFolderAsync(level,root, name))}
+        createFolder: (level, root, name) => { dispatch(createFolderAsync(level, root, name)) }
     }
 }
 

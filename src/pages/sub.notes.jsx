@@ -13,6 +13,7 @@ import UploadButton from '../components/buttons/fileupload.button'
 import FolderCreate from '../components/buttons/create.folder'
 import UploadFile from '../components/buttons/upload.file'
 import Fs from '../components/holders/fs'
+import LeftPannel from '../components/holders/left.pannel'
 
 import {
     makeStyles,
@@ -134,6 +135,14 @@ const SubNotes = props => {
             </Dialog>
 
             <Grid container spacing={2}>
+
+                <Grid item xs={2}>
+                    <LeftPannel />
+                </Grid>
+
+                <Grid item >
+
+                <Grid container spacing={2}>
                 {props.files.map(el => {
                     if(el.level !== level)
                     return (
@@ -146,6 +155,10 @@ const SubNotes = props => {
                         />
                     )
                 })}
+            </Grid>
+
+                </Grid>
+
             </Grid>
 
 
