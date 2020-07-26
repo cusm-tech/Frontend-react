@@ -136,7 +136,7 @@ const SubNotes = props => {
 
             <Grid container spacing={2}>
 
-                <Grid item xs={2}>
+                <Grid item xs={3}>
                     <LeftPannel />
                 </Grid>
 
