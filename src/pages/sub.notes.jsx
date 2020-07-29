@@ -29,6 +29,9 @@ import {
 } from '@material-ui/core'
 
 const useStyle = makeStyles(theme => ({
+    root: {
+        marginTop: theme.spacing(3)
+    },
     dialog: {
         padding: theme.spacing(2),
         height: '200px',
@@ -89,7 +92,7 @@ const SubNotes = props => {
     }
 
     return (
-        <div>
+        <div className={classes.root}>
             <Dialog
                 open={dialog}
                 onClose={closeDialog}

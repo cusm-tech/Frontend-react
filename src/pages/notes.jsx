@@ -28,6 +28,9 @@ import Fs from '../components/holders/fs'
 import LeftPannel from '../components/holders/left.pannel'
 
 const useStyle = makeStyles(theme => ({
+    root: {
+        marginTop: theme.spacing(3)
+    },
     dialog: {
         padding: theme.spacing(2),
         height: '200px',
@@ -89,7 +92,7 @@ const Notes = props => {
 
 
     return (
-        <div>
+        <div className={classes.root}>
             <Dialog
                 open={dialog}
                 onClose={closeDialog}
