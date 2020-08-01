@@ -1,5 +1,9 @@
 import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { connect } from 'react-redux'
+import {
+    createFolderAsync as createFolder
+} from '../../redux/actions/file'
 
 import {
     makeStyles,
@@ -36,6 +40,15 @@ const LeftPannel = props => {
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
+    const [folderName, setFolderName] = React.useState('')
+
+    const createFolder = () => {
+        if(folderName.trim == ''){
+            return 
+        }
+        props.createFolder(props.level, props.root, folderName)
+    }
+
     return (
         <div>
 
@@ -46,12 +59,14 @@ const LeftPannel = props => {
                         <TextField
                             variant="outlined"
                             label="Foldername"
+                            value={folderName}
+                            onChange={(e) => { setFolderName(e.target.value) }}
                         />
                     </FormControl>
                 </Grid>
 
                 <Grid item xs={12}>
-                    <Button>
+                    <Button onClick={createFolder}>
                         Create
                     </Button>
                 </Grid>
@@ -87,4 +102,17 @@ const LeftPannel = props => {
     )
 }
 
-export default LeftPannel
+const mapStateToProps = state => {
+    return {
+        currLevel: state.file.currentLevel,
+        root: state.file.currentRoot
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        createFolder: (level, root, name) => { dispatch(createFolder(level, root, name)) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeftPannel)

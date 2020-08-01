@@ -139,7 +139,7 @@ const Notes = props => {
 
             <Grid container spacing={2}>
                 <Grid item sm={3}>
-                    <LeftPannel />
+                    <LeftPannel level={0} root={undefined} />
                 </Grid>
 
                 <Grid item>
@@ -169,12 +169,6 @@ const Notes = props => {
 
             </Grid>
 
-
-            {((add) ? <div>
-                <UploadFile handle={openDialog} />
-                <FolderCreate handle={toggleFolderDialog} />
-            </div> : null)}
-            <UploadButton handle={addToggle} />
 
         </div>
     )

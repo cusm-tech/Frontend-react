@@ -140,7 +140,7 @@ const SubNotes = props => {
             <Grid container spacing={2}>
 
                 <Grid item xs={3}>
-                    <LeftPannel />
+                    <LeftPannel level={level} root={root} />
                 </Grid>
 
                 <Grid item >
@@ -164,12 +164,6 @@ const SubNotes = props => {
 
             </Grid>
 
-
-            {((add) ? <div>
-                <UploadFile handle={openDialog} />
-                <FolderCreate handle={toggleFolderDialog} />
-            </div> : null)}
-            <UploadButton handle={addToggle} />
         </div>
     )
 }
