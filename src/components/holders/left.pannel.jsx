@@ -42,9 +42,11 @@ const LeftPannel = props => {
 
     const [folderName, setFolderName] = React.useState('')
 
+    const [fileName, setFileName] = React.useState('')
+
     const createFolder = () => {
-        if(folderName.trim == ''){
-            return 
+        if (folderName.trim == '') {
+            return
         }
         props.createFolder(props.level, props.root, folderName)
     }
@@ -73,6 +75,19 @@ const LeftPannel = props => {
 
                 <Grid item xs={12}>
                     <Divider />
+
+                </Grid>
+
+                <Grid item xs={12}>
+
+                    <FormControl fullWidth>
+                        <TextField
+                            variant="outlined"
+                            label="Filename"
+                            value={fileName}
+                            onChange={(e) => { setFileName(e.target.value) }}
+                        />
+                    </FormControl>
 
                 </Grid>
 
